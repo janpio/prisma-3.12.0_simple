@@ -2,7 +2,16 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["dataProxy"]
+  engineType      = "dataproxy"
+  output          = "dataproxy"
+
+}
+
+generator client2 {
   provider = "prisma-client-js"
+  output   = "library"
 }
 
 datasource db {
@@ -11,6 +20,6 @@ datasource db {
 }
 
 model Foo {
-  id   Int    @id @map("_id")
+  id   String @id @map("_id") @db.ObjectId
   name String
 }

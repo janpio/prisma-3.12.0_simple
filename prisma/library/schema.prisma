@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["dataProxy"]
+  engineType      = "dataproxy"
+  output          = "dataproxy"
+
+}
+
+generator client2 {
+  provider = "prisma-client-js"
+  output   = "library"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Foo {
+  id   String @id @map("_id") @db.ObjectId
+  name String
+}
